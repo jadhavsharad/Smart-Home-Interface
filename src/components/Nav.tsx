@@ -1,4 +1,4 @@
-import React from 'react'
+
 import rooms from '../assets/rooms.svg'
 import home from '../assets/home.svg'
 import device from '../assets/device.svg'

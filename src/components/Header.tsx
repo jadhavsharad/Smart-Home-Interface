@@ -1,5 +1,5 @@
 import { Divider, Tooltip } from '@nextui-org/react';
-import React from 'react'
+
 import { FaBell } from "react-icons/fa6";
 
 export default function Header() {
