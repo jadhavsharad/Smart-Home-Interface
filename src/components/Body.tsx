@@ -11,7 +11,7 @@ export default function Body() {
       <Header />
       <div>
         <div className='text-white flex items-center justify-between h-20'>
-          <h1 className='sm:text-2xl md:text-3xl lg:text-4xl font-bold'>Welcome Sharad,</h1>
+          <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold'>Welcome Sharad,</h1>
           <Tooltip content='Add New Device' size='sm' color='primary' shadow='md' showArrow placement='bottom' closeDelay={100}>
             <div className=''>
               <Button size='sm' className='text-white bg-transparent border-[1px] border-[#808080] font-medium' radius="full"><FaPlus /> Add Device</Button>
@@ -20,53 +20,15 @@ export default function Body() {
         </div>
       </div>
       <Divider className='my-3' />
-      <div className=''>
-        <h1 className='text-md md:text-xl text-white font-bold'>Overview</h1>
-        <Divider className='my-2' />
-        <div className='lg:flex items-center gap-6'>
-          <div className='lg:h-96 h-44 lg:min-w-64 lg:w-64 md:w-[50vw] mx-auto lg:mx-0 bg-[#181818] border-[1px] border-[#353535] rounded-2xl'></div>
-          <div className='lg:flex flex-col gap-8'>
-            <div className='h-44 lg:w-96 sm:w-[90] md:w-[50vw]  bg-[#181818] lg:mx-0 mx-auto lg:my-0 my-3 border-[1px] border-[#353535] rounded-2xl'></div>
-            <div className='h-44 lg:w-96 sm:w-[90] md:w-[50vw]  bg-[#181818] lg:mx-0 mx-auto lg:my-0 my-3 border-[1px] border-[#353535] rounded-2xl'></div>
-          </div>
-          <div className='w-full  text-white flex lg:flex-col lg:items-center lg:gap-8 justify-center lg:h-96'>
-            <Card className='bg-transparent'>
-              <CardBody className='text-white'>
-                <CircularProgress
-                  classNames={{
-                    svg: "w-40 h-40 drop-shadow-md",
-                    indicator: "stroke-white",
-                    track: "stroke-white/10",
-                    value: "text-3xl font-semibold text-white",
-                  }}
-                  value={70}
-                  strokeWidth={4}
-                  showValueLabel={true}
-                />
-
-              </CardBody>
-            </Card>
-            <Card className='bg-transparent'>
-              <CardBody className='text-white'>
-                <CircularProgress
-                  classNames={{
-                    svg: "w-40 h-40 drop-shadow-md",
-                    indicator: "stroke-white",
-                    track: "stroke-white/10",
-                    value: "text-4xl font-semibold text-white",
-                  }}
-                  value={70}
-                  strokeWidth={40}
-                  showValueLabel={true}
-                />
-
-              </CardBody>
-              
-            </Card>
-
-            
-
-          </div>
+      <div className='w-full rounded-xl p-2 lg:p-0 gap-4 h-fit lg:h-96  flex flex-col lg:flex-row'>
+        <div className="lg:w-1/4 h-72 lg:h-[inherit] rounded-[inherit] border-[1px] border-[#454545]"></div>
+        <div className="lg:w-1/2 h-72 lg:h-[inherit] rounded-[inherit] flex flex-col md:flex-row lg:flex-col gap-4">
+          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]"></div>
+          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]"></div>
+        </div>
+        <div className="lg:w-1/4 h-72 lg:h-[inherit] rounded-[inherit] flex flex-col md:flex-row lg:flex-col gap-4">
+          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit rounded-[inherit] border-[1px] border-[#454545]"></div>
+          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit rounded-[inherit] border-[1px] border-[#454545]"></div>
         </div>
       </div>
     </div>

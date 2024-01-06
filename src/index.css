@@ -9,6 +9,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: all ease;
 }
 
 body {
@@ -22,14 +23,21 @@ body {
   max-height: 100vh;
   max-width: 100vw;
   display: grid;
-  grid-template-columns: 25vw 75vw;
+  grid-template-columns: 20vw 80vw;
 }
 
 .sm__body{
-  height: 100vh;
+  min-height: 100vh;
   background-color: black;
 }
 .sm__sidebar{
-  height: 100vh;
+  min-height: 100vh;
   background-color: #151515;
+}
+
+@media (max-width: 1024px) {
+  .sm__container {
+    /* display: flex; */
+    grid-template-columns: auto;
+  }
 }
