@@ -1,7 +1,7 @@
 
 import Header from './Header'
 import { FaPlus } from "react-icons/fa6";
-import { Tooltip, Button, Divider, CircularProgress, Chip, Card, CardBody, CardFooter } from '@nextui-org/react';
+import { Tooltip, Button, Divider, CircularProgress } from '@nextui-org/react';
 
 
 export default function Body() {
