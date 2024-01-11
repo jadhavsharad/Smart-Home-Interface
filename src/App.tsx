@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div className='sm__container'>
-        <div className='sm__sidebar hidden lg:block'>
+        <div className='sm__sidebar hidden lg:block overflow-hidden'>
           <Sidebar />
         </div>
         <div className='sm__body'>

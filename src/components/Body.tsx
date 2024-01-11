@@ -2,7 +2,7 @@
 import Header from './Header'
 import { FaPlus } from "react-icons/fa6";
 import { Tooltip, Button, Divider, CircularProgress } from '@nextui-org/react';
-
+import lamp from '../assets/lamp.svg'
 
 export default function Body() {
 
@@ -21,7 +21,24 @@ export default function Body() {
       </div>
       <Divider className='my-3' />
       <div className='w-full rounded-xl p-2 lg:p-0 gap-4 h-fit lg:h-96  flex flex-col lg:flex-row'>
-        <div className="lg:w-1/4 h-72 lg:h-[inherit] rounded-[inherit] border-[1px] border-[#454545]"></div>
+        <div className="lg:w-1/4 w-full h-72 overflow-hidden flex lg:justify-normal lg:flex-col lg:items-center lg:h-[inherit] rounded-[inherit] border-[1px] border-[#454545]">
+          
+          <div className='h-full w-1/2 lg:h-1/3 lg:w-1/2 flex justify-center items-center'>
+            <img src={lamp} className='w-1/2 h-1/2 lg:h-full lg:w-full' alt="" />
+          </div>
+
+          <div className='w-1/2 h-full lg:w-full lg:h-3/4'>
+            <div className='w-full h-1/2 flex items-center justify-center'>
+              <h1 className=' font-black text-yellow-400 text-5xl md:text-7xl'>Lamp</h1>
+            </div>
+            <div className='w-full h-1/2 flex justify-around'>
+    <small className='text-zinc-400 font-semibold md:text-lg'>Current Status: ON</small>
+
+            </div>
+          </div>
+        </div>
+
+
         <div className="lg:w-1/2 h-72 lg:h-[inherit] rounded-[inherit] flex flex-col md:flex-row lg:flex-col gap-4">
           <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]"></div>
           <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]"></div>
@@ -49,7 +66,7 @@ export default function Body() {
 
           <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit text-white font-bold rounded-[inherit] border-[1px] border-[#454545] flex flex-col items-center justify-center py-4">
             <CircularProgress
-            color='warning'
+              color='success'
               maxValue={50}
               minValue={0}
               value={25}
