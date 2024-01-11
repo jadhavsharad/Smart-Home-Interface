@@ -1,10 +1,12 @@
 
 import Header from './Header'
 import { FaPlus } from "react-icons/fa6";
-import { Tooltip, Button, Divider, CircularProgress } from '@nextui-org/react';
+import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
 import lamp from '../assets/lamp.svg'
+import React from 'react';
 
 export default function Body() {
+  const [isSelected, setIsSelected] = React.useState(true);
 
   return (
     <div className='px-10'>
@@ -21,19 +23,19 @@ export default function Body() {
       </div>
       <Divider className='my-3' />
       <div className='w-full rounded-xl p-2 lg:p-0 gap-4 h-fit lg:h-96  flex flex-col lg:flex-row'>
-        <div className="lg:w-1/4 w-full h-72 overflow-hidden flex lg:justify-normal lg:flex-col lg:items-center lg:h-[inherit] rounded-[inherit] border-[1px] border-[#454545]">
-          
-          <div className='h-full w-1/2 lg:h-1/3 lg:w-1/2 flex justify-center items-center'>
-            <img src={lamp} className='w-1/2 h-1/2 lg:h-full lg:w-full' alt="" />
+        <div className="lg:w-1/4 w-full md:h-72 overflow-hidden flex flex-col md:flex-row lg:justify-normal lg:flex-col lg:items-center lg:h-[inherit] rounded-[inherit] border-[1px] border-[#454545]">
+
+          <div className='h-full w-full md:w-1/2 lg:h-1/3 lg:w-1/2 flex justify-center items-center'>
+            <img src={lamp} className='w-full h-32 md:h-3/4 lg:h-full lg:w-full' alt="" />
           </div>
-
-          <div className='w-1/2 h-full lg:w-full lg:h-3/4'>
+          <Divider className='my-3 md:hidden' />
+          <div className='w-full md:w-1/2 h-full lg:w-full lg:h-3/4'>
             <div className='w-full h-1/2 flex items-center justify-center'>
-              <h1 className=' font-black text-yellow-400 text-5xl md:text-7xl'>Lamp</h1>
+              <h1 className=' font-black text-yellow-400 text-3xl md:text-6xl lg:text-4xl'>Lamp</h1>
             </div>
-            <div className='w-full h-1/2 flex justify-around'>
-    <small className='text-zinc-400 font-semibold md:text-lg'>Current Status: ON</small>
-
+            <div className='w-full h-1/2 flex md:flex-col justify-center items-center gap-4 md:gap-6 py-6'>
+              <small className='text-zinc-400 font-semibold md:text-lg'>Current Status: {isSelected ? "ON" : "OFF"}</small>
+              <Switch isSelected={isSelected} onValueChange={setIsSelected}></Switch>  
             </div>
           </div>
         </div>
