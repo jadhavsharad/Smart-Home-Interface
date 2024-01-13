@@ -55,7 +55,7 @@ export default function Body() {
       <Header />
       <div>
         <div className='text-white flex items-center justify-between h-20'>
-          <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold'>Welcome Sharad,</h1>
+          <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-Syne'>Welcome Sharad,</h1>
           <Tooltip content='Add New Device' size='sm' color='primary' shadow='md' showArrow placement='bottom' closeDelay={100}>
             <div className=''>
               <Button size='sm' className='text-white bg-transparent border-[1px] border-[#808080] font-medium' radius="full"><FaPlus /> Add Device</Button>
