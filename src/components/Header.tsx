@@ -13,7 +13,7 @@ export default function Header() {
                 <div className='text-white text-3xl flex gap-3'>
                     <Tooltip content="Notifications" placement='left' showArrow color='warning' size='sm'><button className='rounded-full'><FaBell /></button></Tooltip>
                     <div className='rounded-full cursor-pointer'>
-                        <Dropdown placement="bottom-end" className='rounded-full'>
+                        <Dropdown placement="bottom-end" >
                             <DropdownTrigger>
                                 <Avatar
                                     as="button"
@@ -21,8 +21,8 @@ export default function Header() {
                                     src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
                                 />
                             </DropdownTrigger>
-                            <DropdownMenu aria-label="Profile Actions" variant="flat" className='p-0 rounded-full'>
-                                <DropdownItem key="logout" color="danger" className='px-4 rounded-full'>
+                            <DropdownMenu aria-label="Profile Actions" variant="flat" className='p-0'>
+                                <DropdownItem key="logout" color="danger" className='px-4'>
                                     Log Out
                                 </DropdownItem>
                             </DropdownMenu>
