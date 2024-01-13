@@ -10,7 +10,13 @@ module.exports =  {
   ],
   theme: {
     extend: {
-      
+      fontFamily:{
+        'Inter': ['Inter'],
+        'InterTight': ['Inter Tight'],
+        'Poppins': ['Poppins'],
+        'Syne': ['Syne'],
+        'Syncopate': ['Syncopate'],
+      },
     },
   },
   darkMode: "class",

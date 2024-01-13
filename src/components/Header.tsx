@@ -7,8 +7,8 @@ export default function Header() {
         <div className='py-5 '>
             <div className='flex items-center justify-between'>
                 <div className='text-white'>
-                    <h1 className='text-4xl font-bold'>09:00</h1>
-                    <p className='font-semibold'>Thrusday</p>
+                    <h1 className='text-4xl font-bold font-Inter'>09:00</h1>
+                    <p className='font-semibold font-Inter'>Thrusday</p>
                 </div>
                 <div className='text-white text-3xl flex gap-3'>
                     <Tooltip content="Notifications" placement='left' showArrow color='warning' size='sm'><button className='rounded-full'><FaBell /></button></Tooltip>
