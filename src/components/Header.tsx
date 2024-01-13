@@ -22,7 +22,7 @@ export default function Header() {
                                 />
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Profile Actions" variant="flat" className='p-0'>
-                                <DropdownItem key="logout" color="danger" className='px-4'>
+                                <DropdownItem key="logout" color="danger" className='px-4 py-6'>
                                     Log Out
                                 </DropdownItem>
                             </DropdownMenu>
