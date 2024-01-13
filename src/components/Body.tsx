@@ -54,10 +54,10 @@ export default function Body() {
     <div className='px-5 md:px-10'>
       <Header />
       <div>
-        <div className='text-white flex items-center justify-between h-20'>
-          <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-Syne'>Welcome Sharad,</h1>
+        <div className='text-white block md:flex items-center justify-between h-20'>
+          <h1 className='text-4xl lg:text-4xl font-bold font-Poppins'>Welcome Sharad,</h1>
           <Tooltip content='Add New Device' size='sm' color='primary' shadow='md' showArrow placement='bottom' closeDelay={100}>
-            <div className=''>
+            <div className='float-right'>
               <Button size='sm' className='text-white bg-transparent border-[1px] border-[#808080] font-medium' radius="full"><FaPlus /> Add Device</Button>
             </div>
           </Tooltip>
@@ -76,8 +76,8 @@ export default function Body() {
               <h1 className=' font-black text-yellow-400 text-3xl md:text-6xl lg:text-4xl'>Light</h1>
             </div>
             <div className='w-full flex md:flex-col justify-center items-center gap-4 md:gap-6 py-6'>
-              <small className='text-zinc-400 font-semibold text-xl lg:text-lg'>Current Status: {isSelected ? "ON" : "OFF"}</small>
-              <Switch isSelected={isSelected} onValueChange={setIsSelected} onChange={handleCheckboxChange}></Switch>
+              <small className='text-zinc-400 font-semibold text-lg'>Current Status: {isSelected ? "ON" : "OFF"}</small>
+              <Switch size='sm' isSelected={isSelected} onValueChange={setIsSelected} onChange={handleCheckboxChange}></Switch>
             </div>
           </div>
         </div>
