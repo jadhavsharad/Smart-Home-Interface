@@ -13,13 +13,17 @@ export default function Header() {
                 <div className='text-white text-3xl flex gap-3'>
                     <Tooltip content="Notifications" placement='left' showArrow color='warning' size='sm'><button className='rounded-full'><FaBell /></button></Tooltip>
                     <div className='rounded-full cursor-pointer'>
-                        <Dropdown className='rounded-full scale-75'>
+                        <Dropdown placement="bottom-end" className='rounded-full'>
                             <DropdownTrigger>
-                                <Avatar size='sm' />
+                                <Avatar
+                                    as="button"
+                                    className="transition-transform"
+                                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                />
                             </DropdownTrigger>
-                            <DropdownMenu aria-aria-label='User Actions' variant='flat' className='p-0 font-bold border-none rounded-full'>
-                                <DropdownItem color='danger' className='rounded-full px-4 font-bold'>
-                                    Logout
+                            <DropdownMenu aria-label="Profile Actions" variant="flat" className='p-0 rounded-full'>
+                                <DropdownItem key="logout" color="danger" className='px-4 rounded-full'>
+                                    Log Out
                                 </DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
