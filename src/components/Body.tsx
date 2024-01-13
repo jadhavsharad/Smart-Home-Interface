@@ -9,7 +9,6 @@ import { getDatabase, onValue, ref, set } from 'firebase/database';
 
 
 export default function Body() {
-
   const firebaseConfig = {
     apiKey: JSON.stringify(import.meta.env.VITE_apiKey),
     authDomain: JSON.stringify(import.meta.env.VITE_authDomain),
