@@ -76,7 +76,7 @@ export default function Body() {
               <h1 className=' font-black text-yellow-400 text-3xl md:text-6xl lg:text-4xl'>Light</h1>
             </div>
             <div className='w-full flex md:flex-col justify-center items-center gap-4 md:gap-6 py-6'>
-              <small className='text-zinc-400 font-semibold md:text-lg'>Current Status: {isSelected ? "ON" : "OFF"}</small>
+              <small className='text-zinc-400 font-semibold text-xl lg:text-lg'>Current Status: {isSelected ? "ON" : "OFF"}</small>
               <Switch isSelected={isSelected} onValueChange={setIsSelected} onChange={handleCheckboxChange}></Switch>
             </div>
           </div>
