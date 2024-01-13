@@ -55,7 +55,7 @@ export default function Body() {
       <Header />
       <div>
         <div className='text-white block md:flex items-center justify-between h-20'>
-          <h1 className='text-4xl lg:text-4xl font-bold font-Poppins'>Welcome Sharad,</h1>
+        <h1 className='text-2xl md:text-4xl font-bold font-Poppins'>Welcome Sharad,</h1>
           <Divider className='my-3 md:hidden'/>
           <Tooltip content='Add New Device' size='sm' color='primary' shadow='md' showArrow placement='bottom' closeDelay={100}>
             <div className='float-right'>
