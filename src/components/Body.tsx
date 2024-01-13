@@ -1,4 +1,3 @@
-
 import Header from './Header'
 import { FaPlus } from "react-icons/fa6";
 import { Tooltip, Button, Divider, CircularProgress, Switch, } from '@nextui-org/react';
@@ -7,23 +6,24 @@ import React, { useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, onValue, ref, set } from 'firebase/database';
 
-const firebaseConfig = {
-  apiKey: process.env.VITE_apiKey,
-  authDomain: process.env.VITE_authDomain,
-  databaseURL: process.env.VITE_databaseURL,
-  projectId: process.env.VITE_projectId,
-  storageBucket: process.env.VITE_storageBucket,
-  messagingSenderId: process.env.VITE_messagingSenderId,
-  appId: process.env.VITE_appId,
-  measurementId: process.env.VITE_measurementId,
 
-};
-
-const firebaseapp = initializeApp(firebaseConfig);
 
 export default function Body() {
 
-
+  const firebaseConfig = {
+    apiKey: JSON.stringify(import.meta.env.VITE_apiKey),
+    authDomain: JSON.stringify(import.meta.env.VITE_authDomain),
+    databaseURL: JSON.stringify(import.meta.env.VITE_databaseURL),
+    projectId: JSON.stringify(import.meta.env.VITE_projectId),
+    storageBucket: JSON.stringify(import.meta.env.VITE_storageBucket),
+    messagingSenderId: JSON.stringify(import.meta.env.VITE_messagingSenderId),
+    appId: JSON.stringify(import.meta.env.VITE_appId),
+    measurementId: JSON.stringify(import.meta.env.VITE_measurementId),
+  
+  };
+  
+  const firebaseapp = initializeApp(firebaseConfig);
+  
   const [isSelected, setIsSelected] = React.useState(true);
 
   const database = getDatabase(firebaseapp);
