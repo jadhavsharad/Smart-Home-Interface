@@ -1,12 +1,53 @@
 
 import Header from './Header'
 import { FaPlus } from "react-icons/fa6";
-import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
+import { Tooltip, Button, Divider, CircularProgress, Switch, } from '@nextui-org/react';
 import lamp from '../assets/lamp.svg'
-import React from 'react';
+import React, { useEffect } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, onValue, ref, set } from 'firebase/database';
+
+const firebaseConfig = {
+  apiKey: process.env.VITE_apiKey,
+  authDomain: process.env.VITE_authDomain,
+  databaseURL: process.env.VITE_databaseURL,
+  projectId: process.env.VITE_projectId,
+  storageBucket: process.env.VITE_storageBucket,
+  messagingSenderId: process.env.VITE_messagingSenderId,
+  appId: process.env.VITE_appId,
+  measurementId: process.env.VITE_measurementId,
+
+};
+
+const firebaseapp = initializeApp(firebaseConfig);
 
 export default function Body() {
+
+
   const [isSelected, setIsSelected] = React.useState(true);
+
+  const database = getDatabase(firebaseapp);
+  const statusRef = ref(database, '/path/status');
+  useEffect(() => {
+    onValue(statusRef, (snapshot => {
+      const status = snapshot.val();
+      setIsSelected(status);
+    }))
+  })
+
+  const handleCheckboxChange = () => {
+    const newStatus = !isSelected; // Toggle the value
+    setIsSelected(newStatus); // Update the local state
+
+    // Update the status in the database
+    set(statusRef, newStatus)
+      .then(() => {
+        console.log(newStatus)
+      })
+      .catch((error) => {
+        console.error('Error updating status:', error);
+      });
+  };
 
   return (
     <div className='px-10'>
@@ -25,17 +66,17 @@ export default function Body() {
       <div className='w-full rounded-xl p-2 lg:p-0 gap-4 h-fit lg:h-96  flex flex-col lg:flex-row'>
         <div className="lg:w-1/4 w-full md:h-72 overflow-hidden flex flex-col md:flex-row lg:justify-normal lg:flex-col lg:items-center lg:h-[inherit] rounded-[inherit] border-[1px] border-[#454545]">
 
-          <div className='h-full w-full md:w-1/2 lg:h-1/3 lg:w-1/2 flex justify-center items-center'>
-            <img src={lamp} className='w-full h-32 md:h-3/4 lg:h-full lg:w-full' alt="" />
+          <div className='h-full w-full md:w-1/2 lg:h-1/2 lg:w-1/2 flex justify-center items-center'>
+            <img src={lamp} className='w-full h-36 mt-8 md:my-0 md:h-3/4 lg:h-full mx-auto' alt="" />
           </div>
           <Divider className='my-3 md:hidden' />
-          <div className='w-full md:w-1/2 h-full lg:w-full lg:h-3/4'>
-            <div className='w-full h-1/2 flex items-center justify-center'>
-              <h1 className=' font-black text-yellow-400 text-3xl md:text-6xl lg:text-4xl'>Lamp</h1>
+          <div className='w-full md:w-1/2 h-full lg:w-full lg:h-1/2 flex flex-col justify-center'>
+            <div className='w-full  flex items-center justify-center '>
+              <h1 className=' font-black text-yellow-400 text-3xl md:text-6xl lg:text-4xl'>Light</h1>
             </div>
-            <div className='w-full h-1/2 flex md:flex-col justify-center items-center gap-4 md:gap-6 py-6'>
+            <div className='w-full flex md:flex-col justify-center items-center gap-4 md:gap-6 py-6'>
               <small className='text-zinc-400 font-semibold md:text-lg'>Current Status: {isSelected ? "ON" : "OFF"}</small>
-              <Switch isSelected={isSelected} onValueChange={setIsSelected}></Switch>  
+              <Switch isSelected={isSelected} onValueChange={setIsSelected} onChange={handleCheckboxChange}></Switch>
             </div>
           </div>
         </div>
