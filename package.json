@@ -2,6 +2,12 @@
   "name": "system-manager",
   "private": true,
   "version": "0.0.0",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,13 +16,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@alptugidin/react-circular-progress-bar": "^1.1.2",
     "@nextui-org/react": "^2.2.9",
+    "dotenv": "^16.3.1",
+    "firebase": "^10.7.1",
     "framer-motion": "^10.17.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
