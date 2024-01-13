@@ -1,4 +1,4 @@
-import { Divider, Tooltip, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User } from '@nextui-org/react';
+import { Divider, Tooltip, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from '@nextui-org/react';
 
 import { FaBell } from "react-icons/fa6";
 

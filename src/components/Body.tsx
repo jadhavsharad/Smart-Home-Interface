@@ -3,12 +3,14 @@ import { FaPlus } from "react-icons/fa6";
 import { Tooltip, Button, Divider, CircularProgress, Switch, } from '@nextui-org/react';
 import lamp from '../assets/lamp.svg'
 import React, { useEffect } from 'react';
-import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref, set } from 'firebase/database';
+import {initializeApp } from 'firebase/app';
+import { DataSnapshot, getDatabase, onValue, ref, set, } from 'firebase/database';
+
 
 
 
 export default function Body() {
+
   const firebaseConfig = {
     apiKey: JSON.stringify(import.meta.env.VITE_apiKey),
     authDomain: JSON.stringify(import.meta.env.VITE_authDomain),
@@ -28,10 +30,10 @@ export default function Body() {
   const database = getDatabase(firebaseapp);
   const statusRef = ref(database, '/path/status');
   useEffect(() => {
-    onValue(statusRef, (snapshot => {
+    onValue(statusRef, (snapshot: DataSnapshot) => {
       const status = snapshot.val();
       setIsSelected(status);
-    }))
+    })
   })
 
   const handleCheckboxChange = () => {
