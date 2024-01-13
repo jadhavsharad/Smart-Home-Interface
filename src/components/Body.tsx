@@ -51,7 +51,7 @@ export default function Body() {
   };
 
   return (
-    <div className='px-10'>
+    <div className='px-5 md:px-10'>
       <Header />
       <div>
         <div className='text-white flex items-center justify-between h-20'>
