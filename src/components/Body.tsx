@@ -28,7 +28,7 @@ export default function Body() {
   const [isSelected, setIsSelected] = React.useState(true);
 
   const database = getDatabase(firebaseapp);
-  const statusRef = ref(database, '/path/status');
+  const statusRef = ref(database, '/Pins/16/16');
   useEffect(() => {
     onValue(statusRef, (snapshot: DataSnapshot) => {
       const status = snapshot.val();
