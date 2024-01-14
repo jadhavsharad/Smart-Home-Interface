@@ -3,8 +3,9 @@ import { FaPlus } from "react-icons/fa6";
 import { Tooltip, Button, Divider, CircularProgress, Switch, } from '@nextui-org/react';
 import lamp from '../assets/lamp.svg'
 import React, { useEffect } from 'react';
-import {initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import { DataSnapshot, getDatabase, onValue, ref, set, } from 'firebase/database';
+import { LineChart } from '@mui/x-charts/LineChart';
 
 
 
@@ -20,11 +21,11 @@ export default function Body() {
     messagingSenderId: JSON.stringify(import.meta.env.VITE_messagingSenderId),
     appId: JSON.stringify(import.meta.env.VITE_appId),
     measurementId: JSON.stringify(import.meta.env.VITE_measurementId),
-  
+
   };
-  
+
   const firebaseapp = initializeApp(firebaseConfig);
-  
+
   const [isSelected, setIsSelected] = React.useState(true);
 
   const database = getDatabase(firebaseapp);
@@ -55,8 +56,8 @@ export default function Body() {
       <Header />
       <div>
         <div className='text-white block md:flex items-center justify-between h-20'>
-        <h1 className='text-2xl md:text-4xl font-bold font-Poppins'>Welcome Sharad,</h1>
-          <Divider className='my-3 md:hidden'/>
+          <h1 className='text-2xl md:text-4xl font-bold font-Poppins'>Welcome Sharad,</h1>
+          <Divider className='my-3 md:hidden' />
           <Tooltip content='Add New Device' size='sm' color='primary' shadow='md' showArrow placement='bottom' closeDelay={100}>
             <div className='float-right'>
               <Button size='sm' className='text-white bg-transparent border-[1px] border-[#808080] font-medium' radius="full"><FaPlus /> Add Device</Button>
@@ -85,8 +86,28 @@ export default function Body() {
 
 
         <div className="lg:w-1/2 h-72 lg:h-[inherit] rounded-[inherit] flex flex-col md:flex-row lg:flex-col gap-4">
-          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]"></div>
-          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]"></div>
+          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
+            <LineChart
+              xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
+              series={[
+                {
+                  data: [2, 3, 5.5, 8.5, 1.5, 5, 1, 4, 3, 8],
+                  showMark: ({ index }) => index % 2 === 0,
+                },
+              ]}
+               />
+          </div>
+          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
+          <LineChart
+              xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
+              series={[
+                {
+                  data: [2, 3, 5.5, 8.5, 1.5, 5, 1, 4, 3, 8],
+                  showMark: ({ index }) => index % 2 === 0,
+                },
+              ]}
+               />
+          </div>
         </div>
 
 
