@@ -19,7 +19,7 @@ export default function Login() {
                     </form>
                     <form className='flex flex-col gap-2'>
                         <label htmlFor="passsword" className='font-Inter font-medium'>Enter Password</label>
-                        <input type="password" id='email' placeholder='Enter Password' className='py-2 px-4 bg-zinc-900 border-[1.5px] border-zinc-800 hover:border-blue-500 focus:border-yellow-400 font-Inter outline-none rounded-lg' />
+                        <input type="password" id='password' placeholder='Enter Password' className='py-2 px-4 bg-zinc-900 border-[1.5px] border-zinc-800 hover:border-blue-500 focus:border-yellow-400 font-Inter outline-none rounded-lg' />
                     </form>
                     <button className='bg-blue-500 text-white font-Inter font-bold w-full py-2 rounded-lg'>Log In</button>
                 </div>
