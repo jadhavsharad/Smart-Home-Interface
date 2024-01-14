@@ -3,40 +3,21 @@ import { FaPlus } from "react-icons/fa6";
 import { Tooltip, Button, Divider, CircularProgress, Switch, } from '@nextui-org/react';
 import lamp from '../assets/lamp.svg'
 import React, { useEffect } from 'react';
-import { initializeApp } from 'firebase/app';
-import { DataSnapshot, getDatabase, onValue, ref, set, } from 'firebase/database';
-import { LineChart } from '@mui/x-charts/LineChart';
-
-
-
+import db from './Firebase'
+import { DataSnapshot, onValue, ref, set, } from 'firebase/database';
 
 export default function Body() {
 
-  const firebaseConfig = {
-    apiKey: JSON.stringify(import.meta.env.VITE_apiKey),
-    authDomain: JSON.stringify(import.meta.env.VITE_authDomain),
-    databaseURL: JSON.stringify(import.meta.env.VITE_databaseURL),
-    projectId: JSON.stringify(import.meta.env.VITE_projectId),
-    storageBucket: JSON.stringify(import.meta.env.VITE_storageBucket),
-    messagingSenderId: JSON.stringify(import.meta.env.VITE_messagingSenderId),
-    appId: JSON.stringify(import.meta.env.VITE_appId),
-    measurementId: JSON.stringify(import.meta.env.VITE_measurementId),
 
-  };
-
-  const firebaseapp = initializeApp(firebaseConfig);
-
+  // Control Swtiches
   const [isSelected, setIsSelected] = React.useState(true);
-
-  const database = getDatabase(firebaseapp);
-  const statusRef = ref(database, '/Pins/16/16');
+  const statusRef = ref(db, '/Pins/16/16');
   useEffect(() => {
     onValue(statusRef, (snapshot: DataSnapshot) => {
       const status = snapshot.val();
       setIsSelected(status);
     })
   })
-
   const handleCheckboxChange = () => {
     const newStatus = !isSelected; // Toggle the value
     setIsSelected(newStatus); // Update the local state
@@ -87,26 +68,9 @@ export default function Body() {
 
         <div className="lg:w-1/2 h-72 lg:h-[inherit] rounded-[inherit] flex flex-col md:flex-row lg:flex-col gap-4">
           <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
-            <LineChart
-              xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
-              series={[
-                {
-                  data: [2, 3, 5.5, 8.5, 1.5, 5, 1, 4, 3, 8],
-                  showMark: ({ index }) => index % 2 === 0,
-                },
-              ]}
-               />
+
           </div>
           <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
-          <LineChart
-              xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
-              series={[
-                {
-                  data: [2, 3, 5.5, 8.5, 1.5, 5, 1, 4, 3, 8],
-                  showMark: ({ index }) => index % 2 === 0,
-                },
-              ]}
-               />
           </div>
         </div>
 
