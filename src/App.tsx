@@ -1,5 +1,4 @@
 import Body from './components/Body'
-import Firebase from './components/Firebase'
 import Sidebar from './components/Sidebar'
 
 function App() {
