@@ -4,7 +4,7 @@ import AC from '../assets/AC.svg'
 import lamp from '../assets/lamp.svg'
 import React, { useEffect } from 'react';
 import { FaPlus } from "react-icons/fa6";
-import Warning from '../assets/Warning.svg'
+// import Warning from '../assets/Warning.svg'
 import Checked from '../assets/Checked.svg'
 import { DataSnapshot, onValue, ref, set, } from 'firebase/database';
 import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
