@@ -8,7 +8,7 @@ export default function Login() {
             <div className='text-white text-3xl lg:text-4xl xl:text-5xl flex justify-center items-center h-full '>
                 <h1 className='font-Syne font-bold'>Access Your Smart Home</h1>
             </div>
-            <Divider className='my-3 md:my-5 lg:my-7 xl:my-10 bg-white py-0.5 rounded-full' />
+            <Divider className='my-3 md:my-5 lg:my-7 xl:my-10 bg-white rounded-full' />
             <div className=' z-10 bg-black border-[1px] w-full flex flex-col gap-6 items-center justify-center max-w-md md:max-w-lg border-zinc-800 rounded-3xl'>
                 <Divider/>
                 <div className=''><img src={loginlogo} className='h-52' alt="" /></div>
