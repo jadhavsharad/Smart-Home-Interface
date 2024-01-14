@@ -32,6 +32,7 @@ export default function Body() {
       });
   };
 
+
   return (
     <div className='px-5 md:px-10'>
       <Header />
