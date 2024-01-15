@@ -46,6 +46,8 @@ export default function Body() {
   // Funtcion to toggle switches and send to database
   const switchOneToggle = () => {
     setSwitchone(!switchone);
+    set(switch1Ref, !switchone);
+
   };
 
   const switchTwoToggle = () => {
