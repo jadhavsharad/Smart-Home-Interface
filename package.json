@@ -25,10 +25,12 @@
     "@mui/system": "^5.15.4",
     "@mui/x-charts": "^6.18.7",
     "@nextui-org/react": "^2.2.9",
+    "chart.js": "^4.4.1",
     "dotenv": "^16.3.1",
     "firebase": "^10.7.1",
     "framer-motion": "^10.17.4",
     "react": "^18.2.0",
+    "react-chartkick": "^0.5.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "styled-components": "^6.1.8"
