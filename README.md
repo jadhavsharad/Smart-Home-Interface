@@ -64,7 +64,7 @@ npm start
 
 Open your browser and explore your enhanced IntelliNest at ```http://localhost:3000```
 
-## 🛠️ Hardware & Software Harmony
+## 🛠️ Hardware & Software
 
 For an in-depth exploration of the hardware and software connection behind IntelliNest, visit the [Smart Home Automation Repository](https://github.com/jadhavsharad/Smart-Home-Automation-With-ESP32-and-Firebase). Discover the coordination between sensors, controllers, and the software leading the Integration of Smart Living Spaces.
 
