@@ -2,6 +2,12 @@ import React, { useEffect } from 'react'
 import db from './Firebase'
 import { DataSnapshot, off, onValue, ref } from 'firebase/database';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
 
 
 
@@ -68,6 +74,7 @@ export default function Chart() {
         return () => {
             off(dbRef, 'value')
             off(tempRef, 'value')
+            off(humidref, 'value')
         }
     }, [])
 
@@ -75,37 +82,41 @@ export default function Chart() {
     console.log(time)
     console.log(temp)
     return (
-        <div className=''>
-            
-            <LineChart
-                sx={{
-                    
-                    '& .MuiChartsAxis-tickLabel': {
-                        fill: 'white',
-                    },
-                    '& .MuiAreaElement-series-Temperature':{
-                        fill: "url('#GradientT')",
-                    },
-                    '& .MuiAreaElement-series-Humidity':{
-                        fill: "url('#GradientH')",
-                    },
-                }}
+        <ThemeProvider theme={darkTheme}>
+            <div className=''>
 
-                tooltip={{ trigger: 'item' }}
-                series={[{ id: 'Temperature', data: temp, area: true, showMark: false, stack: 'total' }, { id: 'Humidity', data: humid, area: true, showMark: false, stack: 'total' }]}
-                xAxis={[{ scaleType: 'point', data: time, }]}
-                 height={200}>
-                <defs>
-                    <linearGradient id="GradientT" gradientTransform="rotate(90)">
-                        <stop offset="0%" stopColor="#089688" />
-                        <stop offset="100%" stopColor="transparent" />
-                    </linearGradient>
-                    <linearGradient id="GradientH" gradientTransform="rotate(90)">
-                        <stop offset="0%" stopColor="#0080ff" />
-                        <stop offset="100%" stopColor="transparent" />
-                    </linearGradient>
-                </defs>
-            </LineChart>
-        </div>
+                <LineChart
+                    sx={{
+                        '& .MuiChartsAxis-tick': {
+                            fill: 'white',
+                            color: 'white',
+                        },
+
+                        '.MuiAreaElement-series-Temperature': {
+                            fill: "url('#GradientT')",
+                        },
+                        '.MuiAreaElement-series-Humidity': {
+                            fill: "url('#GradientH')",
+                        },
+
+                    }}
+
+                    tooltip={{ trigger: 'item' }}
+                    series={[{ color: '#3b82f6', id: 'Temperature', data: temp, area: true, showMark: false, stack: 'total' }, { color: '#f43f5e', id: 'Humidity', data: humid, area: true, showMark: false, stack: 'total' }]}
+                    xAxis={[{ scaleType: 'point', data: time, }]}
+                    height={230}>
+                    <defs>
+                        <linearGradient id="GradientT" gradientTransform="rotate(90)">
+                            <stop offset="5%" stopColor="#3b82f6" />
+                            <stop offset="95%" stopColor="black" />
+                        </linearGradient>
+                        <linearGradient id="GradientH" gradientTransform="rotate(90)">
+                            <stop offset="5%" stopColor="#f43f5e" />
+                            <stop offset="95%" stopColor="black" />
+                        </linearGradient>
+                    </defs>
+                </LineChart>
+            </div>
+        </ThemeProvider>
     )
 }

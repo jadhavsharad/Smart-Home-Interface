@@ -138,7 +138,7 @@ export default function Body() {
             </div>
           </div>
 
-          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit] overflow-hidden ">
+          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit] overflow-hidden flex items-center">
             <div className='min-w-full'>
               <Chart />
             </div>
