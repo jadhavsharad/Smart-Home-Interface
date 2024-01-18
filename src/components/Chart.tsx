@@ -16,9 +16,9 @@ export default function Chart() {
     const [time, setTime] = React.useState([0, 0, 0, 0, 0]);
     const [temp, setTemp] = React.useState([0, 0, 0, 0, 0]);
     const [humid, setHumid] = React.useState([0, 0, 0, 0, 0]);
-    const dbRef = ref(db, '/Time/');
-    const tempRef = ref(db, '/Temperature/')
-    const humidref = ref(db, '/Temperature/')
+    const dbRef = ref(db, '/Sensors/Time/');
+    const tempRef = ref(db, '/Sensors/Temperature/')
+    const humidref = ref(db, '/Sensors/Humidity/')
 
     useEffect(() => {
         onValue(dbRef, (snapshot: DataSnapshot) => {
