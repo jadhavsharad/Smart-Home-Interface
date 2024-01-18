@@ -20,8 +20,8 @@ export default function Body() {
   const [humid, setHumidity] = React.useState(0);
 
   // Fetching From Database
-  const switch1Ref = ref(db, '/Pins/16/16');
-  const switch2Ref = ref(db, '/Pins/17/17');
+  const switch1Ref = ref(db, '/Devices/Device 1/');
+  const switch2Ref = ref(db, '/Devices/Device 2/');
   const tempRef = ref(db, '/Temperature');
   const humidityRef = ref(db, '/Humidity');
 
