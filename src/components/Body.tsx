@@ -4,7 +4,7 @@ import AC from '../assets/AC.svg'
 import lamp from '../assets/lamp.svg'
 import React, { useEffect } from 'react';
 import { FaPlus } from "react-icons/fa6";
-// import Warning from '../assets/Warning.svg'
+import Warning from '../assets/Warning.svg'
 import Checked from '../assets/Checked.svg'
 import { DataSnapshot, onValue, ref, set, } from 'firebase/database';
 import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
@@ -14,24 +14,27 @@ export default function Body() {
 
 
   // Controls
-  const [switchone, setSwitchone] = React.useState(true);
-  const [switchtwo, setSwitchtwo] = React.useState(true);
+  const [switchone, setSwitchone] = React.useState(1);
+  const [switchtwo, setSwitchtwo] = React.useState(1);
   const [temp, setTemp] = React.useState(0);
   const [humid, setHumidity] = React.useState(0);
+  const [icon, setIcon] = React.useState(Warning);
+  const [iconAlert, setIconAlert] = React.useState(0);
 
   // Fetching From Database
-  const switch1Ref = ref(db, '/Devices/1/1/');
-  const switch2Ref = ref(db, '/Devices/2/2/');
+  const switch1Ref = ref(db, '/Pin16/LED/');
+  const switch2Ref = ref(db, '/Pin17/FAN/');
   const tempRef = ref(db, '/Sensors/Temperature');
   const humidityRef = ref(db, '/Sensors/Humidity');
+  const sensorsRef = ref(db, "/Sensors");
 
   useEffect(() => {
     onValue(switch1Ref, (snapshot: DataSnapshot) => {
-      setSwitchone(snapshot.val());
+      setSwitchone(snapshot.val() ? 1 : 0);
     })
 
     onValue(switch2Ref, (snapshot: DataSnapshot) => {
-      setSwitchtwo(snapshot.val())
+      setSwitchtwo(snapshot.val() ? 1 : 0)
     })
 
     onValue(tempRef, (snapshot: DataSnapshot) => {
@@ -41,20 +44,30 @@ export default function Body() {
     onValue(humidityRef, (snapshot: DataSnapshot) => {
       setHumidity(snapshot.val());
     })
+
+    onValue(sensorsRef, (snapshot: DataSnapshot) => {
+      const iconAlert = setIconAlert(snapshot.val());
+    })
+
+    if (iconAlert == 0) {
+      setIcon(Checked);
+    } else if (iconAlert == 1) {
+      setIcon(Warning);
+    }
   })
 
-  // Funtcion to toggle switches and send to database
+  // Function to toggle switches and send to database
   const switchOneToggle = () => {
-    setSwitchone(!switchone);
-    set(switch1Ref, !switchone);
-
+    const newValue = switchone === 1 ? 0 : 1; // Toggle between 0 and 1
+    setSwitchone(newValue);
+    set(switch1Ref, newValue);
   };
 
   const switchTwoToggle = () => {
-    setSwitchtwo(!switchtwo);
-    set(switch2Ref, !switchtwo);
-
-  }
+    const newValue = switchtwo === 1 ? 0 : 1; // Toggle between 0 and 1
+    setSwitchtwo(newValue);
+    set(switch2Ref, newValue);
+  };
 
   // Temp Monitoring Color
   let color
@@ -105,7 +118,7 @@ export default function Body() {
             <Divider className='my-3' />
             <div>
               <h3>Current Status: {switchone ? "ON" : "OFF"}</h3>
-              <Switch size='sm' className='float-right' isSelected={switchone} onValueChange={setSwitchone} onChange={switchOneToggle}></Switch>
+              <Switch size='sm' className='float-right' isSelected={switchone == 1 ? true : false}  onChange={switchOneToggle}></Switch>
             </div>
           </div>
 
@@ -118,7 +131,7 @@ export default function Body() {
             <Divider className='my-3' />
             <div>
               <h3>Current Status: {switchtwo ? "ON" : "OFF"}</h3>
-              <Switch size='sm' className='float-right' isSelected={switchtwo} onValueChange={setSwitchtwo} onChange={switchTwoToggle} color='primary'></Switch>
+              <Switch size='sm' className='float-right' isSelected={switchone == 1 ? true : false} onChange={switchTwoToggle} color='primary'></Switch>
             </div>
           </div>
         </div>
@@ -132,7 +145,7 @@ export default function Body() {
                 <small className='text-[1rem] text-zinc-400 font-Poppins'>No Problems Detected</small>
               </div>
               <div className="w-1/2 h-full p-4 lg:p-10 flex justify-center items-center">
-                <img src={Checked} className='max-h-36' alt="" />
+                <img src={icon} className='max-h-36' alt="" />
                 {/* <img src={Warning} className='max-h-32' alt="" /> */}
               </div>
             </div>
