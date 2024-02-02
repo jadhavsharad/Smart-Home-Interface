@@ -14,7 +14,6 @@ import Chart from './Chart';
 
 export default function Body() {
 
-
   // Controls
   const [switchone, setSwitchone] = React.useState(0);
   const [switchtwo, setSwitchtwo] = React.useState(0);
