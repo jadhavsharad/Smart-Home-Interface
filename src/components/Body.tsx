@@ -1,11 +1,13 @@
 import db from './Firebase'
 import Header from './Header'
-import AC from '../assets/AC.svg'
+import Fan from '../assets/fan.svg'
 import lamp from '../assets/lamp.svg'
 import React, { useEffect } from 'react';
 import { FaPlus } from "react-icons/fa6";
 import Warning from '../assets/Warning.svg'
 import Checked from '../assets/Checked.svg'
+import Fire from '../assets/fire.svg'
+import Gas from '../assets/Gas.svg'
 import { DataSnapshot, onValue, ref, set, } from 'firebase/database';
 import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
 import Chart from './Chart';
@@ -14,19 +16,22 @@ export default function Body() {
 
 
   // Controls
-  const [switchone, setSwitchone] = React.useState(1);
-  const [switchtwo, setSwitchtwo] = React.useState(1);
+  const [switchone, setSwitchone] = React.useState(0);
+  const [switchtwo, setSwitchtwo] = React.useState(0);
   const [temp, setTemp] = React.useState(0);
   const [humid, setHumidity] = React.useState(0);
-  const [icon, setIcon] = React.useState(Warning);
-  const [iconAlert, setIconAlert] = React.useState(0);
+  const [fireAlert, setFireAlert] = React.useState(0);
+  const [gasAlert, setGasAlert] = React.useState(0);
+  const [icon, setIcon] = React.useState(Checked);
+  const [alerttext, setAlertText] = React.useState('')
 
   // Fetching From Database
   const switch1Ref = ref(db, '/Pin16/LED/');
   const switch2Ref = ref(db, '/Pin17/FAN/');
   const tempRef = ref(db, '/Sensors/Temperature');
   const humidityRef = ref(db, '/Sensors/Humidity');
-  const sensorsRef = ref(db, "/Sensors");
+  const fireRef = ref(db, "/Sensors/Fire/");
+  const gasRef = ref(db, "/Sensors/Gas Sensor/");
 
   useEffect(() => {
     onValue(switch1Ref, (snapshot: DataSnapshot) => {
@@ -45,14 +50,26 @@ export default function Body() {
       setHumidity(snapshot.val());
     })
 
-    onValue(sensorsRef, (snapshot: DataSnapshot) => {
-      const iconAlert = setIconAlert(snapshot.val());
+    onValue(fireRef, (snapshot: DataSnapshot) => {
+      setFireAlert(snapshot.val());
+    })
+    onValue(gasRef, (snapshot: DataSnapshot) => {
+      setGasAlert(snapshot.val());
     })
 
-    if (iconAlert == 0) {
-      setIcon(Checked);
-    } else if (iconAlert == 1) {
+    if ((fireAlert == 1) && (gasAlert == 1)) {
       setIcon(Warning);
+      setAlertText('Multiple Problems Detected')
+    } else if (fireAlert === 1) {
+      setIcon(Fire);
+      setAlertText('Fire Detected');
+    } else if (gasAlert === 1) {
+      setIcon(Gas)
+      setAlertText('Gas Leakage Detected')
+    }
+    else {
+      setIcon(Checked)
+      setAlertText('You Are Good To Go')
     }
   })
 
@@ -112,26 +129,27 @@ export default function Body() {
         <div className=" w-full  lg:w-1/4 lg:h-[inherit] overflow-hidden flex justify-center flex-col gap-4 md:flex-row lg:justify-normal lg:flex-col lg:items-center  rounded-[inherit]">
           <div className={`border-[1.25px] w-full rounded-[inherit] p-5 md:w-full h-fit lg:h-full  text-white font-Inter font-medium ${switchone ? SwitchActiveBd : 'border-zinc-800'}`}>
             <div className='flex lg:text-base text-xl md:text-2xl items-center  gap-4 lg:gap-0 lg:justify-around rounded-[inherit]'>
-              <img src={AC} className={`w-14 h-14 rounded-[inherit] ${switchone ? SwitchActiveBg : 'bg-gradient-to-t from-zinc-900 to-zinc-700'}`} alt="" />
-              <h1>Air Conditioner</h1>
+              <img src={lamp} className={`w-14 h-14 p-2 rounded-[inherit] ${switchone ? SwitchActiveBg : 'bg-gradient-to-t from-zinc-900 to-zinc-700'}`} alt="" />
+              <h1>Ceiling Light</h1>
             </div>
             <Divider className='my-3' />
             <div>
               <h3>Current Status: {switchone ? "ON" : "OFF"}</h3>
-              <Switch size='sm' className='float-right' isSelected={switchone == 1 ? true : false}  onChange={switchOneToggle}></Switch>
+              <Switch size='sm' className='float-right' isSelected={switchone == 1 ? true : false} onChange={switchOneToggle}></Switch>
             </div>
           </div>
 
 
           <div className={`border-[1.25px] w-full rounded-[inherit] p-5 md:w-full h-fit lg:h-full  text-white font-Inter font-medium ${switchtwo ? SwitchActiveBd : 'border-zinc-800'}`}>
             <div className='flex lg:text-base text-xl md:text-2xl items-center  gap-4 lg:gap-0 lg:justify-around rounded-[inherit]'>
-              <img src={lamp} className={`w-14 h-14 p-2 rounded-[inherit] ${switchtwo ? SwitchActiveBg : 'bg-gradient-to-t from-zinc-900 to-zinc-700'}`} alt="" />
-              <h1>Ceiling Light</h1>
+              <img src={Fan} className={`w-14 h-14 p-2 rounded-[inherit] ${switchtwo ? SwitchActiveBg : 'bg-gradient-to-t from-zinc-900 to-zinc-700'}`} alt="" />
+              <h1>Ceiling Fan</h1>
+
             </div>
             <Divider className='my-3' />
             <div>
               <h3>Current Status: {switchtwo ? "ON" : "OFF"}</h3>
-              <Switch size='sm' className='float-right' isSelected={switchone == 1 ? true : false} onChange={switchTwoToggle} color='primary'></Switch>
+              <Switch size='sm' className='float-right' isSelected={switchtwo == 1 ? true : false} onChange={switchTwoToggle} color='primary'></Switch>
             </div>
           </div>
         </div>
@@ -141,8 +159,8 @@ export default function Body() {
           <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
             <div className='text-white flex justify-center items-center h-full'>
               <div className="w-1/2 h-full flex flex-col justify-center items-center text-center gap-2 p-6">
-                <h1 className='text-2xl font-bold  capitalize'>You are good to go</h1>
-                <small className='text-[1rem] text-zinc-400 font-Poppins'>No Problems Detected</small>
+                <h1 className={`text-2xl font-bold  capitalize ${(fireAlert == 1) ? 'text-orange-400 text-3xl' : (gasAlert == 1) ? 'text-rose-500 text-3xl': ((fireAlert == 1) && (gasAlert == 1)) ? 'text-red-500' : 'text-white' }`}>{alerttext}</h1>
+                <small className='text-[1rem] text-zinc-400 font-Poppins'>{fireAlert == 1 || gasAlert == 1 || ((fireAlert == 1) && (gasAlert == 1) ? 'Problems Detected' : 'No Problems Detected')}</small>
               </div>
               <div className="w-1/2 h-full p-4 lg:p-10 flex justify-center items-center">
                 <img src={icon} className='max-h-36' alt="" />
