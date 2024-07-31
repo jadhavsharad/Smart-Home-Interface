@@ -167,7 +167,7 @@ export default function Body() {
             <div className='text-white flex justify-center items-center h-full'>
               <div className="w-1/2 h-full flex flex-col justify-center items-center text-center gap-2 p-6">
                 <h1 className={`text-2xl font-bold  capitalize ${(fireAlert == 1) ? 'text-orange-400 text-3xl' : 'text-white'}`}>{alerttext}</h1>
-                <small className='text-[1rem] text-zinc-400 font-Poppins'>{fireAlert == 1 || ((fireAlert == 1)) ? 'Problems Detected' : 'No Problems Detected'}</small>
+                <small className='text-[1rem] text-zinc-400 font-Poppins'>{fireAlert == 1 || ((soilAlert == 1) || (waterLevel == 1)) ? 'Problems Detected' : 'No Problems Detected'}</small>
               </div>
               <div className="w-1/2 h-full p-4 lg:p-10 flex justify-center items-center">
                 <img src={icon} className='max-h-36' alt="" />
