@@ -55,10 +55,6 @@ export default function Body() {
 
     if (fireAlert == 1){
       setIcon(Warning);
-      setAlertText('Multiple Problems Detected')
-    } else if (fireAlert === 1) {
-      setIcon(Fire);
-      setAlertText('Fire Detected');
     } 
     else {
       setIcon(Checked)
