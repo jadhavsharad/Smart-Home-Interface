@@ -22,6 +22,7 @@ export default function Body() {
   const [humid, setHumidity] = React.useState(0);
   const [fireAlert, setFireAlert] = React.useState(0);
   const [soilAlert, setSoilAlert] = React.useState(0);
+  const [waterLevel, setWaterLevel] = React.useState(0);
   const [icon, setIcon] = React.useState(Checked);
   const [alerttext, setAlertText] = React.useState('')
 
@@ -32,7 +33,7 @@ export default function Body() {
   const humidityRef = ref(db, '/Sensors/Humidity');
   const fireRef = ref(db, "/Sensors/fireAlert/");
   const soilRef = ref(db, "/Sensors/soilAlert/");
-
+const tankLevelref = ref(db, "/Sensors/waterLevelAlert/")
 
 
   useEffect(() => {
@@ -58,6 +59,9 @@ export default function Body() {
     onValue(soilRef, (snapshot: DataSnapshot) => {
       setSoilAlert(snapshot.val());
     })
+    onValue(tankLevelref, (snapshot: DataSnapshot) => {
+      setSoilAlert(snapshot.val());
+    })
 
     if (fireAlert == 1) {
       setIcon(Warning);
@@ -66,6 +70,9 @@ export default function Body() {
     } else if (soilAlert == 1) {
       setIcon(Warning);
       setAlertText('Soil Dry.')
+    }else if(waterLevel == 1){
+      setIcon(Warning);
+      setAlertText('Water Tank Full.')
     }
     else {
       setIcon(Checked)
