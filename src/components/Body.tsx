@@ -34,7 +34,7 @@ export default function Body() {
 
   useEffect(() => {
     onValue(switch1Ref, (snapshot: DataSnapshot) => {
-      setSwitchone(snapshot.val() ? 1 : 0);
+      setSwitchone(snapshot.val() ? 0 : 1);
     })
 
     onValue(switch2Ref, (snapshot: DataSnapshot) => {
