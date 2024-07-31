@@ -1,6 +1,6 @@
 import db from './Firebase'
 import Header from './Header'
-import Fan from '../assets/fan.svg'
+
 import lamp from '../assets/lamp.svg'
 import React, { useEffect } from 'react';
 import { FaPlus } from "react-icons/fa6";
