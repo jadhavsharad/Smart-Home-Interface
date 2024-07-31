@@ -137,7 +137,7 @@ export default function Body() {
           <div className={`border-[1.25px] w-full rounded-[inherit] p-5 md:w-full h-fit lg:h-full  text-white font-Inter font-medium ${switchone ? SwitchActiveBd : 'border-zinc-800'}`}>
             <div className='flex lg:text-base text-xl md:text-2xl items-center  gap-4 lg:gap-0 lg:justify-around rounded-[inherit]'>
               <img src={lamp} className={`w-14 h-14 p-2 rounded-[inherit] ${switchone ? SwitchActiveBg : 'bg-gradient-to-t from-zinc-900 to-zinc-700'}`} alt="" />
-              <h1>Ceiling Light</h1>
+              <h1>Lamp</h1>
             </div>
             <Divider className='my-3' />
             <div>
