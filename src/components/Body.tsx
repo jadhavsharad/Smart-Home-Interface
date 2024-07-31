@@ -7,10 +7,10 @@ import { FaPlus } from "react-icons/fa6";
 import Warning from '../assets/Warning.svg'
 import Checked from '../assets/Checked.svg'
 import Fire from '../assets/fire.svg'
-import Gas from '../assets/Gas.svg'
+
 import { DataSnapshot, onValue, ref, set, } from 'firebase/database';
 import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
-import Chart from './Chart';
+
 
 export default function Body() {
 
@@ -20,17 +20,17 @@ export default function Body() {
   const [temp, setTemp] = React.useState(0);
   const [humid, setHumidity] = React.useState(0);
   const [fireAlert, setFireAlert] = React.useState(0);
-  const [gasAlert, setGasAlert] = React.useState(0);
+
   const [icon, setIcon] = React.useState(Checked);
   const [alerttext, setAlertText] = React.useState('')
 
   // Fetching From Database
-  const switch1Ref = ref(db, '/Pin16/LED/');
-  const switch2Ref = ref(db, '/Pin17/FAN/');
+  const switch1Ref = ref(db, '/Devices/Device 1/');
+  const switch2Ref = ref(db, '/Devices/Device 2/');
   const tempRef = ref(db, '/Sensors/Temperature');
   const humidityRef = ref(db, '/Sensors/Humidity');
-  const fireRef = ref(db, "/Sensors/Fire/");
-  const gasRef = ref(db, "/Sensors/Gas Sensor/");
+  const fireRef = ref(db, "/Sensors/fireAlert/");
+
 
   useEffect(() => {
     onValue(switch1Ref, (snapshot: DataSnapshot) => {
@@ -52,20 +52,14 @@ export default function Body() {
     onValue(fireRef, (snapshot: DataSnapshot) => {
       setFireAlert(snapshot.val());
     })
-    onValue(gasRef, (snapshot: DataSnapshot) => {
-      setGasAlert(snapshot.val());
-    })
 
-    if ((fireAlert == 1) && (gasAlert == 1)) {
+    if (fireAlert == 1){
       setIcon(Warning);
       setAlertText('Multiple Problems Detected')
     } else if (fireAlert === 1) {
       setIcon(Fire);
       setAlertText('Fire Detected');
-    } else if (gasAlert === 1) {
-      setIcon(Gas)
-      setAlertText('Gas Leakage Detected')
-    }
+    } 
     else {
       setIcon(Checked)
       setAlertText('You Are Good To Go')
@@ -155,11 +149,11 @@ export default function Body() {
 
 
         <div className="lg:w-1/2 lg:h-[inherit] rounded-[inherit] flex flex-col md:flex-row lg:flex-col gap-4">
-          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
+          <div className="lg:w-full lg:h-full md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
             <div className='text-white flex justify-center items-center h-full'>
               <div className="w-1/2 h-full flex flex-col justify-center items-center text-center gap-2 p-6">
-                <h1 className={`text-2xl font-bold  capitalize ${(fireAlert == 1) ? 'text-orange-400 text-3xl' : (gasAlert == 1) ? 'text-rose-500 text-3xl': ((fireAlert == 1) && (gasAlert == 1)) ? 'text-red-500' : 'text-white' }`}>{alerttext}</h1>
-                <small className='text-[1rem] text-zinc-400 font-Poppins'>{fireAlert == 1 || gasAlert == 1 || ((fireAlert == 1) && (gasAlert == 1) ? 'Problems Detected' : 'No Problems Detected')}</small>
+                <h1 className={`text-2xl font-bold  capitalize ${(fireAlert == 1) ? 'text-orange-400 text-3xl'  : 'text-white' }`}>{alerttext}</h1>
+                <small className='text-[1rem] text-zinc-400 font-Poppins'>{fireAlert == 1  || ((fireAlert == 1) ) ? 'Problems Detected' : 'No Problems Detected'}</small>
               </div>
               <div className="w-1/2 h-full p-4 lg:p-10 flex justify-center items-center">
                 <img src={icon} className='max-h-36' alt="" />
@@ -168,11 +162,7 @@ export default function Body() {
             </div>
           </div>
 
-          <div className="lg:w-full lg:h-1/2 md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit] overflow-hidden flex items-center">
-            <div className='min-w-full'>
-              <Chart />
-            </div>
-          </div>
+          
         </div>
 
 
@@ -201,13 +191,13 @@ export default function Body() {
               maxValue={80}
               minValue={0}
               value={humid}
-              strokeWidth={8}
+              strokeWidth={2}
               label='Room Humidity'
               showValueLabel
               formatOptions={{ style: "unit", unit: "percent" }}
               classNames={{
                 svg: "w-24 h-24 drop-shadow-md",
-                track: "stroke-white/20",
+                track: "stroke-white/10",
                 value: "text-xl font-semibold text-white",
               }} />
           </div>

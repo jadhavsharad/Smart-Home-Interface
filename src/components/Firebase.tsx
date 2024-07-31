@@ -10,7 +10,7 @@ import { getDatabase } from 'firebase/database';
         messagingSenderId: JSON.stringify(import.meta.env.VITE_messagingSenderId),
         appId: JSON.stringify(import.meta.env.VITE_appId),
         measurementId: JSON.stringify(import.meta.env.VITE_measurementId),
-    
+        
       };
     
       const firebaseapp = initializeApp(firebaseConfig);
