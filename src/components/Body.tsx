@@ -6,11 +6,11 @@ import React, { useEffect } from 'react';
 import { FaPlus } from "react-icons/fa6";
 import Warning from '../assets/Warning.svg'
 import Checked from '../assets/Checked.svg'
-import Fire from '../assets/fire.svg'
+
 
 import { DataSnapshot, onValue, ref, set, } from 'firebase/database';
 import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
-import { red } from '@mui/material/colors';
+
 
 
 export default function Body() {
@@ -60,7 +60,7 @@ export default function Body() {
       setSoilAlert(snapshot.val());
     })
     onValue(tankLevelref, (snapshot: DataSnapshot) => {
-      setSoilAlert(snapshot.val());
+      setWaterLevel(snapshot.val());
     })
 
     if (fireAlert == 1) {
