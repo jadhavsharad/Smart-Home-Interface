@@ -10,6 +10,7 @@ import Fire from '../assets/fire.svg'
 
 import { DataSnapshot, onValue, ref, set, } from 'firebase/database';
 import { Tooltip, Button, Divider, CircularProgress, Switch } from '@nextui-org/react';
+import { red } from '@mui/material/colors';
 
 
 export default function Body() {
@@ -20,7 +21,7 @@ export default function Body() {
   const [temp, setTemp] = React.useState(0);
   const [humid, setHumidity] = React.useState(0);
   const [fireAlert, setFireAlert] = React.useState(0);
-
+  const [soilAlert, setSoilAlert] = React.useState(0);
   const [icon, setIcon] = React.useState(Checked);
   const [alerttext, setAlertText] = React.useState('')
 
@@ -30,6 +31,8 @@ export default function Body() {
   const tempRef = ref(db, '/Sensors/Temperature');
   const humidityRef = ref(db, '/Sensors/Humidity');
   const fireRef = ref(db, "/Sensors/fireAlert/");
+  const soilRef = ref(db, "/Sensors/soilAlert/");
+
 
 
   useEffect(() => {
@@ -52,10 +55,18 @@ export default function Body() {
     onValue(fireRef, (snapshot: DataSnapshot) => {
       setFireAlert(snapshot.val());
     })
+    onValue(soilRef, (snapshot: DataSnapshot) => {
+      setSoilAlert(snapshot.val());
+    })
 
-    if (fireAlert == 1){
+    if (fireAlert == 1) {
       setIcon(Warning);
-    } 
+      setAlertText('Fire Warning.')
+
+    } else if (soilAlert == 1) {
+      setIcon(Warning);
+      setAlertText('Soil Dry.')
+    }
     else {
       setIcon(Checked)
       setAlertText('You Are Good To Go')
@@ -148,8 +159,8 @@ export default function Body() {
           <div className="lg:w-full lg:h-full md:w-1/2 w-full h-fit border-[1px] border-[#454545] rounded-[inherit]">
             <div className='text-white flex justify-center items-center h-full'>
               <div className="w-1/2 h-full flex flex-col justify-center items-center text-center gap-2 p-6">
-                <h1 className={`text-2xl font-bold  capitalize ${(fireAlert == 1) ? 'text-orange-400 text-3xl'  : 'text-white' }`}>{alerttext}</h1>
-                <small className='text-[1rem] text-zinc-400 font-Poppins'>{fireAlert == 1  || ((fireAlert == 1) ) ? 'Problems Detected' : 'No Problems Detected'}</small>
+                <h1 className={`text-2xl font-bold  capitalize ${(fireAlert == 1) ? 'text-orange-400 text-3xl' : 'text-white'}`}>{alerttext}</h1>
+                <small className='text-[1rem] text-zinc-400 font-Poppins'>{fireAlert == 1 || ((fireAlert == 1)) ? 'Problems Detected' : 'No Problems Detected'}</small>
               </div>
               <div className="w-1/2 h-full p-4 lg:p-10 flex justify-center items-center">
                 <img src={icon} className='max-h-36' alt="" />
@@ -158,7 +169,7 @@ export default function Body() {
             </div>
           </div>
 
-          
+
         </div>
 
 
