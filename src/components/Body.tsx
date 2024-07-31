@@ -82,7 +82,7 @@ export default function Body() {
 
   // Function to toggle switches and send to database
   const switchOneToggle = () => {
-    const newValue = switchone === 1 ? 0 : 1; // Toggle between 0 and 1
+    const newValue = switchone === 0 ? 1 : 0; // Toggle between 0 and 1
     setSwitchone(newValue);
     set(switch1Ref, newValue);
   };
