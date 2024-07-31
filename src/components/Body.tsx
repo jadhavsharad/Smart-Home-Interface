@@ -38,7 +38,7 @@ export default function Body() {
 
   useEffect(() => {
     onValue(switch1Ref, (snapshot: DataSnapshot) => {
-      setSwitchone(snapshot.val() ? 0 : 1);
+      setSwitchone((snapshot.val() == 0) ? 0 : 1);
     })
 
     onValue(switch2Ref, (snapshot: DataSnapshot) => {
@@ -82,7 +82,7 @@ export default function Body() {
 
   // Function to toggle switches and send to database
   const switchOneToggle = () => {
-    const newValue = switchone === 0 ? 1 : 0; // Toggle between 0 and 1
+    const newValue = switchone === 1 ? 0 : 1; // Toggle between 0 and 1
     setSwitchone(newValue);
     set(switch1Ref, newValue);
   };
@@ -136,13 +136,13 @@ export default function Body() {
         <div className=" w-full  lg:w-1/4 lg:h-[inherit] overflow-hidden flex justify-center flex-col gap-4 md:flex-row lg:justify-normal lg:flex-col lg:items-center  rounded-[inherit]">
           <div className={`border-[1.25px] w-full rounded-[inherit] p-5 md:w-full h-fit lg:h-full  text-white font-Inter font-medium ${switchone ? SwitchActiveBd : 'border-zinc-800'}`}>
             <div className='flex lg:text-base text-xl md:text-2xl items-center  gap-4 lg:gap-0 lg:justify-around rounded-[inherit]'>
-              <img src={lamp} className={`w-14 h-14 p-2 rounded-[inherit] ${switchone ? SwitchActiveBg : 'bg-gradient-to-t from-zinc-900 to-zinc-700'}`} alt="" />
+              <img src={lamp} className={`w-14 h-14 p-2 rounded-[inherit] ${switchone ? 'bg-gradient-to-t from-zinc-900 to-zinc-700'  :SwitchActiveBg }`} alt="" />
               <h1>Ceiling Light</h1>
             </div>
             <Divider className='my-3' />
             <div>
-              <h3>Current Status: {switchone ? "ON" : "OFF"}</h3>
-              <Switch size='sm' className='float-right' isSelected={switchone == 1 ? true : false} onChange={switchOneToggle}></Switch>
+              <h3>Current Status: {switchone ? "OFF" : "ON"}</h3>
+              <Switch size='sm' className='float-right' isSelected={switchone == 1 ? false : true} onChange={switchOneToggle}></Switch>
             </div>
           </div>
 
