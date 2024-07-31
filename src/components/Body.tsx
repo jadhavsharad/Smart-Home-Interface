@@ -33,7 +33,7 @@ export default function Body() {
   const humidityRef = ref(db, '/Sensors/Humidity');
   const fireRef = ref(db, "/Sensors/fireAlert/");
   const soilRef = ref(db, "/Sensors/soilAlert/");
-const tankLevelref = ref(db, "/Sensors/waterLevelAlert/")
+  const tankLevelref = ref(db, "/Sensors/waterLevelAlert/")
 
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const tankLevelref = ref(db, "/Sensors/waterLevelAlert/")
     } else if (soilAlert == 1) {
       setIcon(Warning);
       setAlertText('Soil Dry.')
-    }else if(waterLevel == 1){
+    } else if (waterLevel == 1) {
       setIcon(Warning);
       setAlertText('Water Tank Full.')
     }
